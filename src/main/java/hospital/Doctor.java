@@ -1,20 +1,17 @@
 package hospital;
 
-public class Doctor {
-    
-    private String name;
-    private String npi;    
-    private boolean isAvailable;
+public class Doctor extends Provider{
+     
 
     public Doctor(String name, String npi){
-        this.name = name;
-        this.npi = npi;        
+        super(name, npi);       
     }
 
     public boolean getIsAvailable(){
-        return this.isAvailable;
+        return super.getIsAvailable();
     }
 
+    @Override
     public void treatPatient(Patient patient){
         patient.setCondition("bad");
         patient.setPrognosis("very bad");

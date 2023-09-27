@@ -1,30 +1,33 @@
 package hospital;
 
-public class Nurse {
+public class Nurse extends Provider{
     
-    private String name;
-    private String npi;
+
     private String degree;
-    private boolean isAvailable = true;
 
     public Nurse(String name, String npi, String degree){
-        this.name = name;
-        this.npi = npi;
-        this.degree = degree;        
+        super(name, npi);
+        super.setIsAvailable(true);
+        if(degree.equals("RN") || degree.equals("LN"))
+        {
+            this.degree = degree;  
+        }
+            
+              
     }
 
     public boolean getIsAvailable(){
-        return this.isAvailable;
+        return super.getIsAvailable();
     }
 
     public void treatPatient(Patient patient){
-        this.isAvailable = false;
+        super.setIsAvailable(false);
         patient.setCondition("ok");
         patient.setPrognosis("so so");
     }
 
     public void triagePatient(Patient patient){
-        this.isAvailable = false;
+        super.setIsAvailable(false);
         patient.setTemperature(99.9);
         patient.setBloodPressure("140/100");
     }

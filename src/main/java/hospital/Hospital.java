@@ -10,55 +10,37 @@ public class Hospital {
         new Patient("Seal")
     };
 
-    private static Nurse[] nurses = {
+    private static Provider[] providers = {
         new Nurse("Betty White", "12345", "RN"),
-        new Nurse("Gordon Schumway", "67890", "LPN")
+        new Nurse("Gordon Schumway", "67890", "LPN"),
+        new Doctor("Doctor J", "9999"),
+        new Doctor("Doctor Feelgood", "434343") 
     };
 
-    private static Doctor[] doctors = {
-        new Doctor("Doctor J", "9999"),
-        new Doctor("Doctor Feelgood", "434343")      
-    };
+
 
     public static void main(String[] args){
 
         for(int i = 0; i < patients.length; i++){
 
-            Nurse nurse = getNextAvailableNurse();
-            if(nurse == null){
-                Doctor doctor = getNextAvailableDoctor();
-                if(doctor == null){
-                    break;
-                }else{
-                    doctor.treatPatient(patients[i]);
-                }                
-            }else{
-                nurse.treatPatient(patients[i]);
-            }
+            Provider provider = getNextAvailableProvider();
+            if(provider == null)
+                break;
+            
+            provider.treatPatient(patients[i]);
+
         }
 
 
     }
 
-    private static Nurse getNextAvailableNurse(){
-        Nurse nurse = null;
-        for( int i = 0; i < nurses.length; i++){
-            if(nurses[i].getIsAvailable()){
-                nurse = nurses[i];
-                break;
-            }
+    public static Provider getNextAvailableProvider()
+    {
+        for(int i = 0; i < providers.length; i++){
+            if(providers[i].getIsAvailable())
+                return providers[i];
         }
-        return nurse;
-    }
 
-    private static Doctor getNextAvailableDoctor(){
-        Doctor doctor = null;
-        for( int i = 0; i < doctors.length; i++){
-            if(doctors[i].getIsAvailable()){
-                doctor = doctors[i];
-                break;
-            }
-        }
-        return doctor;
+        return null;
     }
 }

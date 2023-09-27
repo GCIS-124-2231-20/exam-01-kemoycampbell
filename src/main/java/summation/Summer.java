@@ -13,7 +13,7 @@ public class Summer {
      */
     
     public static void main(String[] args) {
-        FileParser fileParser = new FileParser("data.txt");
+        FileParser fileParser = new FileParser("data/data.txt");
         int fileSum = calculateSum(fileParser);
         System.out.println("File Parser sum = " + fileSum);
 
@@ -21,6 +21,20 @@ public class Summer {
         int stringSum = calculateSum(stringParser);
         System.out.println("String Parser sum = " + stringSum);
     }
+
+    public static int calculateSum(Parser parser)
+    {
+        int sum = 0;
+        int[] array = parser.getInts();
+        for(int i = 0; i < array.length; i++)
+        {
+            sum+=array[i];
+        }
+
+        return sum;
+    }
+
+    
 
 
 
